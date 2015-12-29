@@ -1,0 +1,4 @@
+* evil-ediff
+Make ediff a little more evil. This configures ediff to be a little more
+friendly users of vim-like keybindings. Consult the help buffer (=?=) for more
+info.
