@@ -2,3 +2,18 @@
 Make ediff a little more evil. This configures ediff to be a little more
 friendly users of vim-like keybindings. Consult the help buffer (=?=) for more
 info.
+
+Here's a table describing the bindings
+
+| Command                     | Original Binding | Evil-ediff  |
+|-----------------------------+------------------+-------------|
+| =ediff-jump-to-difference=  | =j=              | =d=         |
+| =ediff-previous-difference= | =p,DEL=          | =C-k,p,DEL= |
+| =ediff-next-difference=     | =n,SPC=          | =C-j,n,SPC= |
+| scroll down 1 line          | N/A              | =j=         |
+| scroll up 1 line            | N/A              | =k=         |
+| scroll down half page       | =v=              | =C-d=       |
+| scroll up half page         | =V=              | =C-u=       |
+| =ediff-suspend=             | =z=              | =C-z=       |
+| scroll left                 | =>=              | =zh=        |
+| scroll right                | =<=              | =zl=        |
