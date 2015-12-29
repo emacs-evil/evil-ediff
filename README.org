@@ -12,8 +12,8 @@ Here's a table describing the bindings
 | =ediff-next-difference=     | =n,SPC=          | =C-j,n,SPC= |
 | scroll down 1 line          | N/A              | =j=         |
 | scroll up 1 line            | N/A              | =k=         |
-| scroll down half page       | =v=              | =C-d=       |
-| scroll up half page         | =V=              | =C-u=       |
+| scroll down half page       | =v,C-v=          | =C-d,v,C-v= |
+| scroll up half page         | =V,M-v=          | =C-u,V,M-v= |
 | =ediff-suspend=             | =z=              | =C-z=       |
 | scroll left                 | =>=              | =zh=        |
 | scroll right                | =<=              | =zl=        |
