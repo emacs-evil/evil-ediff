@@ -48,6 +48,7 @@
 (require 'evil)
 (require 'ediff)
 
+(defvar evil-ediff-initial-state-backup (evil-initial-state 'ediff-mode))
 (defvar evil-ediff-long-help-message-compare2-backup ediff-long-help-message-compare2)
 (defvar evil-ediff-long-help-message-compare3-backup  ediff-long-help-message-compare3)
 (defvar evil-ediff-long-help-message-narrow2-backup  ediff-long-help-message-narrow2)
@@ -141,7 +142,6 @@
     ("zh"   . evil-ediff-scroll-left))
   "Alist of bindings changed/added in evil-ediff.")
 
-(evil-set-initial-state 'ediff-mode 'normal)
 (defun evil-ediff-startup-hook ()
   "Place evil-ediff bindings in `ediff-mode-map'."
   (evil-make-overriding-map ediff-mode-map 'normal)
@@ -154,6 +154,7 @@
 (defun evil-ediff-init ()
   "Initialize evil-ediff."
   (interactive)
+  (evil-set-initial-state 'ediff-mode 'normal)
   (add-hook 'ediff-startup-hook 'evil-ediff-startup-hook)
   (evil-ediff-adjust-help))
 (evil-ediff-init)
@@ -161,6 +162,7 @@
 (defun evil-ediff-revert ()
   "Revert changes made by evil-ediff."
   (interactive)
+  (evil-set-initial-state 'ediff-mode evil-ediff-initial-state-backup)
   (unless evil-ediff-help-changed
     (dolist (msg
              '((ediff-long-help-message-compare2 . ediff-long-help-message-compare2-backup)
