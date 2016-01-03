@@ -150,6 +150,7 @@
   (evil-normalize-keymaps)
   nil)
 
+;;;###autoload
 (defun evil-ediff-init ()
   "Initialize evil-ediff."
   (interactive)
@@ -171,7 +172,7 @@
                (ediff-long-help-message-tail . ediff-long-help-message-tail-backup)))
       (setf (symbol-value (car msg)) (symbol-value (cdr msg)))))
   (setq evil-ediff-help-changed nil)
-  (add-hook 'ediff-startup-hook 'evil-ediff-startup-hook))
+  (remove-hook 'ediff-startup-hook 'evil-ediff-startup-hook))
 
 (provide 'evil-ediff)
 ;;; evil-ediff.el ends here
