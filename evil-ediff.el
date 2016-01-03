@@ -59,6 +59,7 @@
 (defvar evil-ediff-help-changed nil)
 
 (defun evil-ediff-adjust-help ()
+  "Adjust long help messages to reflect evil-ediff bindings."
   (unless evil-ediff-help-changed
     (dolist (msg '(ediff-long-help-message-compare2
                    ediff-long-help-message-compare3
@@ -78,46 +79,49 @@
               (replace-regexp-in-string (car chng) (cdr chng) (symbol-value msg))))))
   (setq evil-ediff-help-changed t))
 
-(defun evil-ediff-scroll-down (&optional arg)
-  (interactive "P")
-  (let ((last-command-event ?v))
-    (ediff-scroll-vertically arg)))
-
 (defun evil-ediff-scroll-left (&optional arg)
+  "Scroll left."
   (interactive "P")
   (let ((last-command-event ?>))
     (ediff-scroll-horizontally arg)))
 
 (defun evil-ediff-scroll-right (&optional arg)
+  "Scroll right."
   (interactive "P")
   (let ((last-command-event ?<))
     (ediff-scroll-horizontally arg)))
 
 (defun evil-ediff-scroll-up (&optional arg)
+  "Scroll up by half of a page."
   (interactive "P")
   (let ((last-command-event ?V))
     (ediff-scroll-vertically arg)))
 
 (defun evil-ediff-scroll-down (&optional arg)
+  "Scroll down by half of a page."
   (interactive "P")
   (let ((last-command-event ?v))
     (ediff-scroll-vertically arg)))
 
 (defun evil-ediff-scroll-down-1 ()
+  "Scroll down by a line."
   (interactive)
   (let ((last-command-event ?v))
     (ediff-scroll-vertically 1)))
 
 (defun evil-ediff-scroll-up-1 ()
+  "Scroll down by a line."
   (interactive)
   (let ((last-command-event ?V))
     (ediff-scroll-vertically 1)))
 
 (defun evil-ediff-first-difference ()
+  "Jump to first difference."
   (interactive)
   (ediff-jump-to-difference 1))
 
 (defun evil-ediff-last-difference ()
+  "Jump to last difference."
   (interactive)
   (ediff-jump-to-difference ediff-number-of-differences))
 
@@ -134,7 +138,8 @@
     ("\C-z" . ediff-suspend)
     ("z"    . nil)
     ("zl"   . evil-ediff-scroll-right)
-    ("zh"   . evil-ediff-scroll-left)))
+    ("zh"   . evil-ediff-scroll-left))
+  "Alist of bindings changed/added in evil-ediff.")
 
 (evil-set-initial-state 'ediff-mode 'normal)
 (defun evil-ediff-startup-hook ()
