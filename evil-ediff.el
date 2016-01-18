@@ -35,8 +35,8 @@
 ;; | jump to first difference    | 1j               | gg (or 1d)  |
 ;; | jump to last difference     | N/A              | G           |
 ;; | ediff-next-difference       | n,SPC            | C-j,n,SPC   |
-;; | scroll down 1 line          | N/A              | j           |
-;; | scroll up 1 line            | N/A              | k           |
+;; | scroll down 1 line          | C-u 1 v          | j           |
+;; | scroll up 1 line            | C-u 1 V          | k           |
 ;; | scroll down half page       | v,C-v            | C-d,v,C-v   |
 ;; | scroll up half page         | V,M-v            | C-u,V,M-v   |
 ;; | ediff-suspend               | z                | C-z         |
