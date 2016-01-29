@@ -30,7 +30,7 @@
 ;; | Command                     | Original Binding | Evil-ediff  |
 ;; |-----------------------------+------------------+-------------|
 ;; | ediff-jump-to-difference    | j                | d           |
-;; | ediff-previous-difference   | p,DEL            | C-k,p,DEL   |
+;; | ediff-previous-difference   | p,DEL            | C-k,N,p,DEL |
 ;; | ediff-next-difference       | n,SPC            | C-j,n,SPC   |
 ;; | jump to first difference    | 1j               | gg (or 1d)  |
 ;; | jump to last difference     | N/A              | G           |
@@ -42,6 +42,9 @@
 ;; | ediff-suspend               | z                | C-z         |
 ;; | scroll left                 | >                | zh          |
 ;; | scroll right                | <                | zl          |
+;; | copy B region to A's region | b                | h           |
+;; | copy A region to B's region | a                | l           |
+;; | restore old diff            | rarb             | u           |  
 
 ;;; Code:
 
@@ -70,7 +73,7 @@
                    ediff-long-help-message-head
                    ediff-long-help-message-tail))
       (dolist (chng '( ;;("^" . "  ")
-                      ("p,DEL -previous diff " . "C-k,p -previous diff ")
+                      ("p,DEL -previous diff " . "C-k,N,p -previous diff ")
                       ("n,SPC -next diff     " . "C-j,n -next diff     ")
                       ("    j -jump to diff  " . "    d -jump to diff  ")
                       ("  </> -scroll lt/rt  " . "zh/zl -scroll lt/rt  ")
@@ -126,12 +129,36 @@
   (interactive)
   (ediff-jump-to-difference ediff-number-of-differences))
 
+(defun evil-ediff-last-difference ()
+  "Jump to last difference."
+  (interactive)
+  (ediff-jump-to-difference ediff-number-of-differences))
+
+(defun evil-ediff-copy-B-to-A ()
+  "Jump to last difference."
+  (interactive)
+  (ediff-copy-B-to-A))
+
+(defun evil-ediff-copy-A-to-B ()
+  "Jump to last difference."
+  (interactive)
+  (ediff-copy-A-to-B))
+  
+(defun evil-ediff-restore-diff ()
+  "Jump to last difference."
+  (interactive)
+  (ediff-restore-diff (kbd "a")
+  (ediff-restore-diff (kbd "b")
+  )
+  
+evil-ediff-restore-diff
 (defvar evil-ediff-bindings
   '(("d"    . ediff-jump-to-difference)
     ("j"    . evil-ediff-scroll-down-1)
     ("k"    . evil-ediff-scroll-up-1)
     ("\C-j" . ediff-next-difference)
     ("\C-k" . ediff-previous-difference)
+    ("N"    . ediff-previous-difference)
     ("gg"   . evil-ediff-first-difference)
     ("G"    . evil-ediff-last-difference)
     ("\C-d" . evil-ediff-scroll-down)
@@ -139,7 +166,11 @@
     ("\C-z" . ediff-suspend)
     ("z"    . nil)
     ("zl"   . evil-ediff-scroll-right)
-    ("zh"   . evil-ediff-scroll-left))
+    ("zh"   . evil-ediff-scroll-left)
+    ("b"    . evil-ediff-copy-B-to-A)
+    ("a"    . evil-ediff-copy-A-to-B)
+    ("u"    . evil-ediff-restore-diff)
+    )
   "Alist of bindings changed/added in evil-ediff.")
 
 (defun evil-ediff-startup-hook ()
