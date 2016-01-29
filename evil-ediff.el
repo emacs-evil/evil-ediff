@@ -135,17 +135,17 @@
   (ediff-jump-to-difference ediff-number-of-differences))
 
 (defun evil-ediff-copy-B-to-A ()
-  "Jump to last difference."
+  "Copy B region to A's region."
   (interactive)
   (ediff-copy-B-to-A))
 
 (defun evil-ediff-copy-A-to-B ()
-  "Jump to last difference."
+  "copy A region to B's region."
   (interactive)
   (ediff-copy-A-to-B))
   
 (defun evil-ediff-restore-diff ()
-  "Jump to last difference."
+  "Restore the copy of current region."
   (interactive)
   (ediff-restore-diff (kbd "a")
   (ediff-restore-diff (kbd "b")
