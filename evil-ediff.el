@@ -44,7 +44,9 @@
 ;; | scroll right                | <                | zl          |
 ;; | copy B region to A's region | b                | h           |
 ;; | copy A region to B's region | a                | l           |
-;; | restore old diff            | rarb             | u           |  
+
+;; Not implemented yet
+;; | restore old diff            | rarb             | u           |
 
 ;;; Code:
 
@@ -73,7 +75,7 @@
                    ediff-long-help-message-head
                    ediff-long-help-message-tail))
       (dolist (chng '( ;;("^" . "  ")
-                      ("p,DEL -previous diff " . "C-k,N,p -previous diff ")
+                      ("p,DEL -previous diff " . "C-k,p -previous diff ")
                       ("n,SPC -next diff     " . "C-j,n -next diff     ")
                       ("    j -jump to diff  " . "    d -jump to diff  ")
                       ("  </> -scroll lt/rt  " . "zh/zl -scroll lt/rt  ")
@@ -129,29 +131,12 @@
   (interactive)
   (ediff-jump-to-difference ediff-number-of-differences))
 
-(defun evil-ediff-last-difference ()
-  "Jump to last difference."
-  (interactive)
-  (ediff-jump-to-difference ediff-number-of-differences))
+;; (defun evil-ediff-restore-diff ()
+;;   "Restore the copy of current region."
+;;   (interactive)
+;;   (ediff-restore-diff nil ?a)
+;;   (ediff-restore-diff nil ?b))
 
-(defun evil-ediff-copy-B-to-A ()
-  "Copy B region to A's region."
-  (interactive)
-  (ediff-copy-B-to-A))
-
-(defun evil-ediff-copy-A-to-B ()
-  "copy A region to B's region."
-  (interactive)
-  (ediff-copy-A-to-B))
-  
-(defun evil-ediff-restore-diff ()
-  "Restore the copy of current region."
-  (interactive)
-  (ediff-restore-diff (kbd "a")
-  (ediff-restore-diff (kbd "b")
-  )
-  
-evil-ediff-restore-diff
 (defvar evil-ediff-bindings
   '(("d"    . ediff-jump-to-difference)
     ("j"    . evil-ediff-scroll-down-1)
@@ -167,9 +152,8 @@ evil-ediff-restore-diff
     ("z"    . nil)
     ("zl"   . evil-ediff-scroll-right)
     ("zh"   . evil-ediff-scroll-left)
-    ("b"    . evil-ediff-copy-B-to-A)
-    ("a"    . evil-ediff-copy-A-to-B)
-    ("u"    . evil-ediff-restore-diff)
+    ;; Not working yet
+    ;; ("u"    . evil-ediff-restore-diff)
     )
   "Alist of bindings changed/added in evil-ediff.")
 
@@ -178,6 +162,10 @@ evil-ediff-restore-diff
   (evil-make-overriding-map ediff-mode-map 'normal)
   (dolist (entry evil-ediff-bindings)
     (define-key ediff-mode-map (car entry) (cdr entry)))
+  (unless (or ediff-3way-comparison-job
+              (eq ediff-split-window-function 'split-window-vertically))
+    (define-key ediff-mode-map "l" 'ediff-copy-A-to-B)
+    (define-key ediff-mode-map "h" 'ediff-copy-B-to-A))
   (evil-normalize-keymaps)
   nil)
 
