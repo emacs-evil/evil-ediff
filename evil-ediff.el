@@ -78,6 +78,7 @@
                       ("p,DEL -previous diff " . "C-k,p -previous diff ")
                       ("n,SPC -next diff     " . "C-j,n -next diff     ")
                       ("    j -jump to diff  " . "    d -jump to diff  ")
+                      ("    h -highlighting  " . "    H -highlighting  ")
                       ("  </> -scroll lt/rt  " . "zh/zl -scroll lt/rt  ")
                       ("  v/V -scroll up/dn  " . "C-u/d -scroll up/dn  ")
                       ("  z/q -suspend/quit  " . "C-z/q -quit/suspend  ")))
@@ -139,6 +140,7 @@
 
 (defvar evil-ediff-bindings
   '(("d"    . ediff-jump-to-difference)
+    ("H"    . ediff-toggle-hilit)
     ("j"    . evil-ediff-scroll-down-1)
     ("k"    . evil-ediff-scroll-up-1)
     ("\C-j" . ediff-next-difference)

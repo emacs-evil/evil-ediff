@@ -20,3 +20,4 @@ Here's a table describing the bindings
 | scroll right                | =<=              | =zl=           |
 | copy A region to B's region | =a=              | =a=,=l=        |
 | copy B region to A's region | =b=              | =b=,=h=        |
+| toggle highlighting         | =h=              | =H=            |
