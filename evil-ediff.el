@@ -81,7 +81,7 @@
                       ("    h -highlighting  " . "    H -highlighting  ")
                       ("  </> -scroll lt/rt  " . "zh/zl -scroll lt/rt  ")
                       ("  v/V -scroll up/dn  " . "C-u/d -scroll up/dn  ")
-                      ("  z/q -suspend/quit  " . "C-z/q -quit/suspend  ")))
+                      ("  z/q -suspend/quit"   . "C-z/q -suspend/quit")))
         (setf (symbol-value msg)
               (replace-regexp-in-string (car chng) (cdr chng) (symbol-value msg))))))
   (setq evil-ediff-help-changed t))
