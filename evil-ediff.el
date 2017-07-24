@@ -178,7 +178,9 @@
   (evil-set-initial-state 'ediff-mode 'motion)
   (add-hook 'ediff-startup-hook 'evil-ediff-startup-hook)
   (evil-ediff-adjust-help))
-(evil-ediff-init)
+
+(unless (featurep 'evil-ediff)
+  (evil-ediff-init))
 
 (defun evil-ediff-revert ()
   "Revert changes made by evil-ediff."
