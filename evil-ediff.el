@@ -161,7 +161,7 @@
 
 (defun evil-ediff-startup-hook ()
   "Place evil-ediff bindings in `ediff-mode-map'."
-  (evil-make-overriding-map ediff-mode-map 'normal)
+  (evil-make-overriding-map ediff-mode-map 'motion)
   (dolist (entry evil-ediff-bindings)
     (define-key ediff-mode-map (car entry) (cdr entry)))
   (unless (or ediff-3way-comparison-job
@@ -175,7 +175,7 @@
 (defun evil-ediff-init ()
   "Initialize evil-ediff."
   (interactive)
-  (evil-set-initial-state 'ediff-mode 'normal)
+  (evil-set-initial-state 'ediff-mode 'motion)
   (add-hook 'ediff-startup-hook 'evil-ediff-startup-hook)
   (evil-ediff-adjust-help))
 (evil-ediff-init)
