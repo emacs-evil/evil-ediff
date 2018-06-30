@@ -1,6 +1,6 @@
 * evil-ediff
 
-  *This project has been merged into the larger [[https:/github.com/emacs-evil/evil-collection][Evil Collection]] project and
+  *This project has been merged into the larger [[https://github.com/emacs-evil/evil-collection][Evil Collection]] project and
   will no longer be maintained here.*
 
 Make ediff a little evil. This configures ediff to be friendlier to users
